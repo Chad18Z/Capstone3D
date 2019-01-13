@@ -12,14 +12,15 @@ public class PlayerInput : MonoBehaviour
     // Reference to the rotating cannon
     GameObject gunTorus;
 
-    // Player object starting z value
-    float zValue;
+    // Reference to the ship's cabin (the sphere)
+    GameObject sphere;
 
-    // Position of mouse cursor
-    Vector3 mouse;
+    // How fast the player's ship rotates when the mouse is moved
+    float rotationSpeed = 25f;
 
-    // Rotation of the ship
-    Quaternion rot;
+    // Reference to this ship's rigidbody component
+    Rigidbody rb;
+
     #endregion
 
     #region Methods
@@ -27,22 +28,29 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         gunTorus = GameObject.FindGameObjectWithTag("gunTorus");
-        Debug.Log(gunTorus);
-
-        zValue = gameObject.transform.position.z;
+        sphere = GameObject.FindGameObjectWithTag("sphere");
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        mouse = Camera.main.WorldToScreenPoint(Input.mousePosition);
-        Vector3 diff = new Vector3(mouse.x - transform.position.x, mouse.y - transform.position.y, zValue);
-        float angle = Mathf.Atan2(diff.y, diff.x);
+        float x = Input.GetAxis("Mouse X") * rotationSpeed;
+        Debug.Log(x);
+        gunTorus.transform.Rotate(Vector3.forward, x);
 
-        //gunTorus.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-
-        gunTorus.transform.Rotate(0f, 0f, angle);
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(Vector3.back * 10f);
+            //sphere.transform.rotation = new Quaternion(0, 90f, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(Vector3.forward * 10f);
+            //sphere.transform.rotation = new Quaternion(0, -90f, 0, 0);
+        }
     }
+
 
     #endregion
 }
