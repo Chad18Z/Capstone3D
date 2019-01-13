@@ -17,6 +17,9 @@ public class PlayerInput : MonoBehaviour
 
     // Position of mouse cursor
     Vector3 mouse;
+
+    // Rotation of the ship
+    Quaternion rot;
     #endregion
 
     #region Methods
@@ -30,10 +33,15 @@ public class PlayerInput : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        mouse = Camera.main.WorldToScreenPoint(Input.mousePosition);
+        Vector3 diff = new Vector3(mouse.x - transform.position.x, mouse.y - transform.position.y, zValue);
+        float angle = Mathf.Atan2(diff.y, diff.x);
 
+        //gunTorus.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 
+        gunTorus.transform.Rotate(0f, 0f, angle);
     }
 
     #endregion
