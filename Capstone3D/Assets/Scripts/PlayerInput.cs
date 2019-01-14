@@ -12,14 +12,27 @@ public class PlayerInput : MonoBehaviour
     // Reference to the rotating cannon
     GameObject gunTorus;
 
-    // Reference to the ship's cabin (the sphere)
-    GameObject sphere;
+    // Raycasting for mouse position. We need a plane for the ray to intersect with
+    public Plane groundPlane;
 
     // How fast the player's ship rotates when the mouse is moved
-    float rotationSpeed = 25f;
+    float rotationSpeed = 10f;
 
     // Reference to this ship's rigidbody component
     Rigidbody rb;
+
+    // How fast the ship accelerates
+    float speed = 5f;
+
+    // The ship's velocity, initialize to zero
+    Vector3 moveVelocity = Vector3.zero;
+
+    // Rotation of the ship
+    Quaternion rot;
+
+    // Hold input
+    float hInput; // horizontal axis
+    float vInput; // vertical axis
 
     #endregion
 
@@ -28,29 +41,35 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         gunTorus = GameObject.FindGameObjectWithTag("gunTorus");
-        sphere = GameObject.FindGameObjectWithTag("sphere");
         rb = gameObject.GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float x = Input.GetAxis("Mouse X") * rotationSpeed;
-        Debug.Log(x);
-        gunTorus.transform.Rotate(Vector3.forward, x);
+        // Get input values from each axis
+        hInput = Input.GetAxisRaw("Horizontal");
+        vInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            rb.AddForce(Vector3.back * 10f);
-            //sphere.transform.rotation = new Quaternion(0, 90f, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            rb.AddForce(Vector3.forward * 10f);
-            //sphere.transform.rotation = new Quaternion(0, -90f, 0, 0);
-        }
+        // Velocity vector from player input
+        moveVelocity = new Vector3(vInput * speed, 0, hInput * speed);
+
+        // The cannons should always face the mouse cursor
+        // Shoot a ray from the camera to the mouse cursor
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        float rayLength;
+
+       // if (groundPlane.Raycast
+
     }
 
+    // Apply physics to game objects
+    void FixedUpdate()
+    {
+        rb.velocity = moveVelocity;
+    }
 
     #endregion
 }

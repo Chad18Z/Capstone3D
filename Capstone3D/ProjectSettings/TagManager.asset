@@ -6,6 +6,7 @@ TagManager:
   tags:
   - gunTorus
   - sphere
+  - groundPlane
   layers:
   - Default
   - TransparentFX
