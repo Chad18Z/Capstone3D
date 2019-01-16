@@ -551,8 +551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cf61f94cc00734da5dac6be746cacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundPlane: {fileID: 177551754}
-  mainCamera: {fileID: 1080317726}
 --- !u!54 &1557182547
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -569,3 +567,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1557182548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557182543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 231f42e50496d174bac0e2b2e198f938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1080317726}
+  groundPlane: {fileID: 177551754}
