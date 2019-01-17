@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Anvil.cs" />
+    <Compile Include="Assets\Scripts\AnvilStates.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>G:/Users/Chad/Documents/Capstone3D/Capstone3D/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
