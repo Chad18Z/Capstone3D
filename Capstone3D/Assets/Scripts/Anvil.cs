@@ -21,7 +21,7 @@ public class Anvil : MonoBehaviour
     GameObject groundPlane;
 
     // Distance from the player character in which the mouse cursor is detectable
-    float mouseRadius = 2.05f;
+    float mouseRadius = 2.04f;
 
     // State machine support
     AnvilStates state = AnvilStates.IDLE;
@@ -63,11 +63,8 @@ public class Anvil : MonoBehaviour
                     Vector3 targetDirection = hit.point - transform.position;
 
                     // Calculate the target angle IN DEGREES 
-                    float targetAngle = Mathf.Atan2(targetDirection.z, targetDirection.x);
+                    float targetAngle = currentAngle + Vector3.Angle(Vector3.forward, targetDirection);
 
-                    // Debugging
-                    Debug.Log("Current: " + currentAngle);
-                    Debug.Log("Target: " + targetAngle);
 
                     // Begin rotation
                     StartCoroutine(RotateShip(currentAngle, targetAngle));
@@ -93,50 +90,15 @@ public class Anvil : MonoBehaviour
     IEnumerator RotateShip(float currentAngle, float targetAngle)
     {
         Vector3 temp = gunTorus.transform.eulerAngles;
-        for (float f = 0; f <= 1; f += .01f)
+        for (float f = 0; f <= 1; f += .16f)
         {
             temp.y = Mathf.Lerp(currentAngle, targetAngle, f);
-
             gunTorus.transform.rotation = Quaternion.Euler(temp);
             yield return null;
         }
 
         // Easing is complete. Change state back to IDLE
         state = AnvilStates.IDLE;
-    }
-
-    /// <summary>
-    /// Easing function for mouse rotation
-    /// Created by C.J. Kimberlin (http://cjkimberlin.com)
-    /// </summary>
-    /// <param name="start"></param>
-    /// <param name="end"></param>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    float EaseOutBounceD(float start, float end, float value)
-    {
-        value /= 1f;
-        end -= start;
-
-        if (value < (1 / 2.75f))
-        {
-            return 2f * end * 7.5625f * value;
-        }
-        else if (value < (2 / 2.75f))
-        {
-            value -= (1.5f / 2.75f);
-            return 2f * end * 7.5625f * value;
-        }
-        else if (value < (2.5 / 2.75))
-        {
-            value -= (2.25f / 2.75f);
-            return 2f * end * 7.5625f * value;
-        }
-        else
-        {
-            value -= (2.625f / 2.75f);
-            return 2f * end * 7.5625f * value;
-        }
     }
 
     #endregion
