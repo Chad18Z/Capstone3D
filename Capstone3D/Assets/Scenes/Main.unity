@@ -581,3 +581,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1080317726}
   groundPlane: {fileID: 177551754}
+  mouseLookCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.0013600396
+      outSlope: 0.0013600396
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.24682617
+      value: 1.0003357
+      inSlope: 0.0013600396
+      outSlope: 0.0013600396
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

@@ -26,6 +26,9 @@ public class Anvil : MonoBehaviour
     // State machine support
     AnvilStates state = AnvilStates.IDLE;
 
+    // Curve for mouse look rotation
+    public AnimationCurve mouseLookCurve;
+
     #endregion
 
     #region Methods
@@ -60,10 +63,13 @@ public class Anvil : MonoBehaviour
                     Vector3 targetDirection = hit.point - transform.position;
 
                     // Calculate the target angle IN DEGREES 
-                    float angle = Mathf.Atan2(targetDirection.z, targetDirection.x) * Mathf.Deg2Rad;
+                    float targetAngle = Mathf.Atan2(targetDirection.z, targetDirection.x);
 
-                    float targetAngle = angle;
+                    // Debugging
+                    Debug.Log("Current: " + currentAngle);
+                    Debug.Log("Target: " + targetAngle);
 
+                    // Begin rotation
                     StartCoroutine(RotateShip(currentAngle, targetAngle));
                 }
                 else
@@ -86,13 +92,12 @@ public class Anvil : MonoBehaviour
     /// <returns></returns>
     IEnumerator RotateShip(float currentAngle, float targetAngle)
     {
-        Vector3 temp = transform.eulerAngles;
-        for (float f = 0; f <= 1; f += .1f)
+        Vector3 temp = gunTorus.transform.eulerAngles;
+        for (float f = 0; f <= 1; f += .01f)
         {
-            //gunTorus.transform.rotation = Quaternion.Slerp(currentAngle, targetAngle, f);
-            //float ease = EaseOutBounceD(currentAngle, targetAngle, f);
-            //temp.y = ease;
-            //gunTorus.transform.rotation = Quaternion.Euler(temp);
+            temp.y = Mathf.Lerp(currentAngle, targetAngle, f);
+
+            gunTorus.transform.rotation = Quaternion.Euler(temp);
             yield return null;
         }
 
