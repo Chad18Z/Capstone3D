@@ -26,9 +26,6 @@ public class Anvil : MonoBehaviour
     // State machine support
     AnvilStates state = AnvilStates.IDLE;
 
-    // Curve for mouse look rotation
-    public AnimationCurve mouseLookCurve;
-
     #endregion
 
     #region Methods
@@ -57,17 +54,16 @@ public class Anvil : MonoBehaviour
                     state = AnvilStates.EASING;
 
                     // Store the ship's current rotation. We'll send this to the Coroutine
-                    float currentAngle = gunTorus.transform.eulerAngles.y;
+                    Quaternion currentRotation = gunTorus.transform.rotation;
 
                     // Calculate the direction from the ship to the mouse cursor. We'll need this to calculate the angle to rotate towards
                     Vector3 targetDirection = hit.point - transform.position;
 
-                    // Calculate the target angle IN DEGREES 
-                    float targetAngle = currentAngle + Vector3.Angle(Vector3.forward, targetDirection);
-
+                    // Create Quaternion for target rotation
+                    Quaternion targetRotation = Quaternion.FromToRotation(gunTorus.transform.forward, targetDirection);
 
                     // Begin rotation
-                    StartCoroutine(RotateShip(currentAngle, targetAngle));
+                    StartCoroutine(RotateShip(currentRotation, targetRotation));
                 }
                 else
                 {
@@ -78,7 +74,6 @@ public class Anvil : MonoBehaviour
             else if (state == AnvilStates.IDLE)
             {
                 state = AnvilStates.INVISIBLE;
-                // Here I will add the code to make the anvil "disappear" in front of the player character
             }
         }
     }
@@ -87,17 +82,14 @@ public class Anvil : MonoBehaviour
     /// Coroutine to smoothly rotate the ship
     /// </summary>
     /// <returns></returns>
-    IEnumerator RotateShip(float currentAngle, float targetAngle)
+    IEnumerator RotateShip(Quaternion currentRotation, Quaternion targetRotation)
     {
-        Vector3 temp = gunTorus.transform.eulerAngles;
-        for (float f = 0; f <= 1; f += .16f)
-        {
-            temp.y = Mathf.Lerp(currentAngle, targetAngle, f);
-            gunTorus.transform.rotation = Quaternion.Euler(temp);
-            yield return null;
-        }
-
-        // Easing is complete. Change state back to IDLE
+        //for (float f = 0; f <= 1; f += .01f)
+        //{
+        //    //Quaternion.Slerp(currentRotation, targetRotation, f);
+        yield return null;
+        //}
+        //// Easing is complete. Change state back to IDLE
         state = AnvilStates.IDLE;
     }
 

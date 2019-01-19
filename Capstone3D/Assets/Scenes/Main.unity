@@ -449,6 +449,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
+      propertyPath: m_Name
+      value: leftCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
+      propertyPath: m_Name
+      value: rightCannon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
 --- !u!1 &1080317724
@@ -503,7 +511,7 @@ Camera:
   far clip plane: 10
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -581,27 +589,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1080317726}
   groundPlane: {fileID: 177551754}
-  mouseLookCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
