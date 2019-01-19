@@ -345,14 +345,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: shipGun
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
-      propertyPath: m_Name
-      value: leftCannon
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
-      propertyPath: m_Name
-      value: rightCannon
-      objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
       propertyPath: m_TagString
       value: sphere
@@ -360,6 +352,14 @@ PrefabInstance:
     - target: {fileID: 100008, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
       propertyPath: m_TagString
       value: gunTorus
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
+      propertyPath: m_Name
+      value: leftCannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
+      propertyPath: m_Name
+      value: rightCannon
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 5a3d5ef7fcb29a54aa15f63570456c99, type: 3}
       propertyPath: m_LocalPosition.x
@@ -511,7 +511,7 @@ Camera:
   far clip plane: 10
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

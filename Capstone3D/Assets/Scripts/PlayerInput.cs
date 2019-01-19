@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
     Rigidbody rb;
 
     // How fast the ship accelerates
-    float speed = 7f;
+    float speed = 6f;
 
     // The ship's velocity, initialize to zero
     Vector3 moveVelocity = Vector3.zero;
