@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
     Rigidbody rb;
 
     // How fast the ship accelerates
-    float speed = 3f;
+    float speed = 7f;
 
     // The ship's velocity, initialize to zero
     Vector3 moveVelocity = Vector3.zero;
@@ -33,8 +33,8 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         // Get input values from each axis
-        float hInput = Input.GetAxisRaw("Horizontal");
-        float vInput = Input.GetAxisRaw("Vertical");
+        float hInput = Input.GetAxis("Horizontal");
+        float vInput = Input.GetAxis("Vertical");
 
         // Velocity vector from player input
         moveVelocity = new Vector3(vInput * speed, 0, hInput * speed);
